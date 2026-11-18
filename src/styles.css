@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Tektur", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --color-bg: #030503;
+  --color-elevated: #081108;
+  --color-surface: #0c160c;
+  --color-fg: #e6f6d6;
+  --color-muted: #86a076;
+  --color-subtle: #5b7052;
+  --color-accent: #8cff1a;
+  --color-accent-dim: #63c400;
+  --color-accent-fg: #041204;
+  --color-border: #1c3218;
+  --color-danger: #f07167;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  --shadow-border: 0 0 0 1px rgba(140, 255, 26, 0.12);
+  --shadow-border-hover: 0 0 0 1px rgba(140, 255, 26, 0.28), 0 0 28px rgba(140, 255, 26, 0.12);
+  --shadow-glow: 0 0 40px rgba(140, 255, 26, 0.2);
+
+  --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-fg);
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  p {
+    text-wrap: pretty;
+    line-height: 1.55;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0 1.15rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    transition:
+      transform 150ms var(--ease-out-smooth),
+      background-color 150ms var(--ease-out-smooth),
+      box-shadow 150ms var(--ease-out-smooth),
+      color 150ms var(--ease-out-smooth),
+      border-color 150ms var(--ease-out-smooth);
+  }
+
+  .btn:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent-dim);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-fg);
+    box-shadow: var(--shadow-border);
+  }
+
+  .btn-ghost:hover {
+    box-shadow: var(--shadow-border-hover);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    box-shadow: var(--shadow-border);
+    transition:
+      background-color 150ms var(--ease-out-smooth),
+      color 150ms var(--ease-out-smooth),
+      box-shadow 150ms var(--ease-out-smooth);
+  }
+
+  .chip[data-active="true"] {
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+    box-shadow: none;
+  }
+
+  .chip:not([data-active="true"]):hover {
+    color: var(--color-fg);
+    box-shadow: var(--shadow-border-hover);
+  }
+
+  .panel {
+    background: var(--color-elevated);
+    box-shadow: var(--shadow-border);
+    border-radius: var(--radius-2xl);
+  }
+
+  .lightning-svg {
+    opacity: 0.22;
+  }
+
+  .lightning-bolt {
+    filter: drop-shadow(0 0 2px var(--color-accent));
+  }
+
+  .lightning-bolt-a {
+    animation: lightning-flicker 5.4s var(--ease-out-smooth) infinite;
+  }
+
+  .lightning-bolt-b {
+    animation: lightning-flicker 7.2s var(--ease-out-smooth) 1.4s infinite;
+  }
+
+  .lightning-bolt-c {
+    animation: lightning-flicker 6.1s var(--ease-out-smooth) 2.8s infinite;
+  }
+}
+
+@keyframes lightning-flicker {
+  0%,
+  86%,
+  100% {
+    opacity: 0.15;
+  }
+  88% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.25;
+  }
+  92% {
+    opacity: 0.9;
+  }
+  95% {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn,
+  .chip {
+    transition: none;
+  }
+
+  .lightning-bolt-a,
+  .lightning-bolt-b,
+  .lightning-bolt-c {
+    animation: none;
+    opacity: 0.35;
+  }
+}
