@@ -116,10 +116,7 @@ function HeroCopy() {
         <a href="#projects" className="btn btn-ghost">
           Смотреть проекты
         </a>
-        <a href="/harddev-site.zip" download="harddev-site.zip" className="btn btn-ghost">
-          <Download className="size-4" />
-          Скачать архив
-        </a>
+       
       </div>
     </div>
   );
@@ -440,14 +437,7 @@ function Footer() {
           <span className="text-sm text-subtle">инди-девелопер</span>
         </div>
         <div className="flex flex-wrap items-center gap-4 text-sm">
-          <a
-            href="/harddev-site.zip"
-            download="harddev-site.zip"
-            className="inline-flex min-h-11 items-center gap-2 text-accent hover:text-fg"
-          >
-            <Download className="size-4" />
-            Скачать zip
-          </a>
+         
           <a
             href={SITE.githubUrl}
             target="_blank"
@@ -483,3 +473,6 @@ function Footer() {
     </footer>
   );
 }
+
+0
+
